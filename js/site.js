@@ -100,7 +100,7 @@ function filterFaqs(term) {
 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const chatResponses = {
   hello:'Hello! How can I help you today?', hi:'Hi there! How can I assist you?',
-  donate:'You can donate via Flutterwave or Paystack on our Donate page. We also accept bank transfers.',
+  donate:'You can donate via Flutterwave on our Donate page. We also accept bank transfers.',
   volunteer:'Visit our Get Involved page to apply as a volunteer!',
   programs:'We offer Scholarship Support, School Supplies, Community Learning Centers, and Mentorship programs.',
   contact:'Call us at +2348031114594 (Nigeria) or +1 (208) 992-6233 (USA). Or email michael@liftandservefoundation.com.',
@@ -154,7 +154,6 @@ function getDonateData() {
   return { name: first+' '+last, email, phone, amount: amt };
 }
 function triggerDonateFlutterwave() { const d=getDonateData(); if(!d) return; runFlutterwave(d); }
-function triggerDonatePaystack()   { const d=getDonateData(); if(!d) return; runPaystack(d); }
 
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    PAYMENT â€” modal
@@ -181,13 +180,12 @@ function getModalData() {
   return { name, email, phone, amount: amt };
 }
 function modalPayFlutterwave() { const d=getModalData(); if(!d) return; closeDonateModal(); runFlutterwave(d); }
-function modalPayPaystack()   { const d=getModalData(); if(!d) return; closeDonateModal(); runPaystack(d); }
 
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   FLUTTERWAVE & PAYSTACK
-   âš  Replace the public keys below with your real keys
+/* ──────────────────────────────
+   FLUTTERWAVE
+   ⚠  Replace the public key in config.js with your real key
    Flutterwave: https://dashboard.flutterwave.com â†’ Settings â†’ API Keys
-   Paystack:    https://dashboard.paystack.com/#/settings/developer
 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 /* Payment SDKs — load only when a donor clicks pay (frees bandwidth for images) */
 function loadScript(src) {
@@ -210,10 +208,6 @@ async function ensureFlutterwave() {
   await loadScript('https://checkout.flutterwave.com/v3.js');
 }
 
-async function ensurePaystack() {
-  if (typeof PaystackPop !== 'undefined') return;
-  await loadScript('https://js.paystack.co/v1/inline.js');
-}
 
 async function runFlutterwave(d) {
   try {
@@ -238,28 +232,6 @@ async function runFlutterwave(d) {
     },
     onclose: function(){}
   });
-}
-async function runPaystack(d) {
-  try {
-    await ensurePaystack();
-  } catch (e) {
-    alert('Unable to load payment. Please try again.');
-    return;
-  }
-  const handler = PaystackPop.setup({
-    key: (window.LISAF_CONFIG?.paystackPublicKey || ""),
-    email:    d.email,
-    amount:   Math.round(d.amount * 100),
-    currency: "USD",
-    ref:      "LISAF-PSK-" + Date.now(),
-    metadata: { custom_fields:[{ display_name:"Donor Name", variable_name:"donor_name", value:d.name }] },
-    callback: function(res) {
-      window.saveDonationRecord?.('paystack', d, res);
-      alert("Thank you, "+d.name+"! Donation of $"+d.amount+" received.\nRef: "+res.reference);
-    },
-    onClose: function(){}
-  });
-  handler.openIframe();
 }
 
 /* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
