@@ -1,0 +1,19 @@
+# Local secrets / env
+.env
+.env.local
+.env.*.local
+
+node_modules/
+data/
+
+# Optional: uncomment after you move secrets out of git history and inject config at deploy time
+# js/config.js
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+
+# Archives
+favicon.zip

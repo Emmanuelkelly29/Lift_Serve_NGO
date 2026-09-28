@@ -1,0 +1,41 @@
+﻿<div class="chatbot-container">
+  <div class="chatbot-toggle" id="chatbotToggle"><i class="fas fa-comments"></i></div>
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header"><h3>Live Support</h3><button class="chatbot-close" id="chatbotClose"><i class="fas fa-times"></i></button></div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="chatbot-message bot-message"><p>Hello! How can I help you today?</p></div>
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" id="chatbotInput" placeholder="Type your messageâ€¦">
+      <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     DONATE MODAL (quick donate from anywhere)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div class="modal-overlay" id="donateModalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDonateModal()">Ã—</button>
+    <h3><i class="fas fa-heart" style="color:var(--gold);margin-right:.4rem;"></i> Make a Donation</h3>
+    <div class="amount-buttons" style="grid-template-columns:repeat(3,1fr);margin-bottom:.8rem;">
+      <button class="amount-btn" onclick="setModalAmount(25,this)">$25</button>
+      <button class="amount-btn" onclick="setModalAmount(50,this)">$50</button>
+      <button class="amount-btn" onclick="setModalAmount(100,this)">$100</button>
+      <button class="amount-btn" onclick="setModalAmount(250,this)">$250</button>
+      <button class="amount-btn" onclick="setModalAmount(500,this)">$500</button>
+      <button class="amount-btn" onclick="setModalAmount(1000,this)">$1000</button>
+    </div>
+    <input class="modal-input" type="number" id="modalCustomAmt" min="1" placeholder="Or enter custom amount ($)" oninput="modalDonateAmt=parseFloat(this.value)||0;document.querySelectorAll('#donateModalOverlay .amount-btn').forEach(b=>b.classList.remove('selected'));updateModalDisplay();">
+    <div class="modal-amount-display" id="modalAmtDisplay">$0</div>
+    <input class="modal-input" type="text"  id="modalName"  placeholder="Full name *">
+    <input class="modal-input" type="email" id="modalEmail" placeholder="Email address *">
+    <input class="modal-input" type="tel"   id="modalPhone" placeholder="Phone (for mobile money)">
+    <div class="pay-btns">
+      <button class="pay-btn" onclick="modalPayFlutterwave()"><i class="fas fa-mobile-alt"></i> Flutterwave</button>
+      <button class="pay-btn" onclick="modalPayPaystack()"><i class="fas fa-credit-card"></i> Paystack</button>
+    </div>
+    <p class="pay-note"><i class="fas fa-lock"></i> Payments are secured and encrypted.</p>
+  </div>
+</div>

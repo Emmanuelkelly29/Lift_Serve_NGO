@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Lift and Serve All Foundation</title>
+<meta name="description" content="Learn about our mission to transform the lives of children in underserved communities through education.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#001F54">
+<link rel="shortcut icon" href="favicon.png" type="image/png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
+<link rel="preconnect" href="https://firestore.googleapis.com" crossorigin>
+<link rel="dns-prefetch" href="https://res.cloudinary.com">
+<link rel="stylesheet" href="css/main.css">
+<script src="js/config.js"></script>
+<script src="js/images.js"></script>
+<script type="module" src="js/firebase-site.js"></script>
+</head>
+<body>
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo">
+      <a href="index.html">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="LISAF Logo" class="logo-img site-logo-img" width="56" height="56" decoding="async" fetchpriority="high">
+        <span>Lift and Serve All Foundation</span>
+      </a>
+    </div>
+    <ul class="nav-menu" id="navMenu">
+      <li><a class="nav-link" data-page="home" href="index.html">Home</a></li>
+      <li><a class="nav-link" data-page="about" href="about.html">About Us</a></li>
+      <li><a class="nav-link" data-page="programs" href="programs.html">Programs &amp; Impact</a></li>
+      <li><a class="nav-link" data-page="involved" href="involved.html">Get Involved</a></li>
+      <li><a class="nav-link" data-page="donate" href="donate.html">Donate</a></li>
+      <li><a class="nav-link" data-page="news" href="news.html">News &amp; Blog</a></li>
+      <li><a class="nav-link" data-page="contact" href="contact.html">Contact Us</a></li>
+      <li><a class="nav-link" data-page="faqs" href="faqs.html">FAQs</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+    </div>
+  </div>
+</nav>
+<div id="page-about" class="page-section active">
+  <div class="page-header"><div class="container"><h1>About Us</h1><p>Learn about our mission to transform the lives of children in underserved communities through education</p></div></div>
+  <div class="page-content"><div class="container">
+
+    <!-- Who We Are -->
+    <div class="content-section">
+      <h2>Who We Are</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>Our Foundation</h3>
+          <p>Lift and Serve All Foundation is a non-profit organization dedicated to transforming the lives of children in underserved communities through education. We believe that every child deserves the opportunity to learn, grow, and achieve their dreams, regardless of their background or circumstances.</p>
+          <p>By lifting young minds with access to quality education and serving communities with care and support, we aim to break barriers, reduce inequality, and create brighter futures.</p>
+        </div>
+        <div class="team-photo-wrap">
+          <img id="teamImg2" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Our Team" class="site-team-img" width="560" height="420" decoding="async" loading="lazy">
+          <p class="caption">Our Team</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Our Story -->
+    <div class="content-section">
+      <h2>Our Story</h2>
+      <div class="about-grid">
+        <div>
+          <div id="storyImgWrap" class="img-placeholder" style="min-height:240px;">
+            <img id="storyImg" src="" alt="Our Journey" style="display:none;width:100%;border-radius:10px;">
+            <div class="img-placeholder-inner" id="storyPlaceholder"><i class="fas fa-heart"></i><p>Our Journey</p></div>
+          </div>
+        </div>
+        <div class="about-text">
+          <h3>The Beginning</h3>
+          <p>The establishment of Lift and Serve All Foundation is driven by a vision to uplift the vulnerable and those living in disadvantaged communities by granting them access to quality education and opportunities for growth.</p>
+          <p>As recorded in the scripture, <em>"The glory of God is intelligence, or, in other words, light and truth."</em> Guided by this divine principle, we believe that by bringing light and truth through education, we can help transform lives, strengthen families, and build stronger communities.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vision & Mission -->
+    <div class="content-section">
+      <h2>Vision &amp; Mission</h2>
+      <div class="content-grid">
+        <div class="content-card">
+          <div class="card-icon"><i class="fas fa-eye"></i></div>
+          <h3>Our Vision</h3>
+          <p><strong>"A world where every child, regardless of background or location, has equal access to education, the chance to unlock their potential, and the support to build a brighter future for themselves and their communities."</strong></p>
+        </div>
+        <div class="content-card">
+          <div class="card-icon"><i class="fas fa-bullseye"></i></div>
+          <h3>Our Mission</h3>
+          <p><strong>"To break barriers for children in underserved communities by providing access to education, resources, and mentorship. We uplift young minds and serve with compassion, ensuring every child has the opportunity to thrive."</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Values -->
+    <div class="content-section">
+      <h2>Our Core Values</h2>
+      <div class="values-grid">
+        <div class="value-card"><div class="value-icon"><i class="fas fa-graduation-cap"></i></div><h3>Education First</h3><p>Learning is the foundation for lasting change.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-balance-scale"></i></div><h3>Equity</h3><p>Every child deserves equal opportunities.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-heart"></i></div><h3>Compassion</h3><p>Serving with empathy, kindness, and respect.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-rocket"></i></div><h3>Empowerment</h3><p>Helping children believe in their potential.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-users"></i></div><h3>Community</h3><p>Partnering with families and local leaders for impact.</p></div>
+        <div class="value-card"><div class="value-icon"><i class="fas fa-shield-alt"></i></div><h3>Integrity</h3><p>Transparency, accountability, and trust in all we do.</p></div>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <div class="content-section">
+      <h2>Meet Our Team</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-member-photo"><img id="teamMemberImg2" src="" alt="Emmanuel" style="display:none;"><div class="img-placeholder-inner"><i class="fas fa-user"></i></div></div>
+          <h3>Emmanuel C. Kelly</h3><p class="role">Managing Trustee
+</p>      <p>Driven by a commitment to education, brings expertise in creating sustainable programs that transform rural communities while ensuring equitable access to learning.</p>
+          <!-- <p style="font-size:.85rem;"><strong>Contact:</strong> emmanuel@liftandservefoundation.com</p> -->
+            </div>
+        <div class="team-card">
+          <div class="team-member-photo"><img id="teamMemberImg3" src="" alt="Team" style="display:none;"><div class="img-placeholder-inner"><i class="fas fa-user"></i></div></div>
+          <h3>Michael Egunjobi</h3><p class="role">Director</p>
+          <p>Passionate educator with over 10 years of experience in community development and educational advocacy.</p>
+          <!-- <p style="font-size:.85rem;"><strong>Contact:</strong> michael@liftandservefoundation.com</p> -->
+          </div>
+        <div class="team-card">
+          <div class="team-member-photo"><img id="teamMemberImg1" src="" alt="Michael" style="display:none;"><div class="img-placeholder-inner"><i class="fas fa-user"></i></div></div>
+          <h3>Margaret Kelikume</h3><p class="role">Children Advocacy Lead</p>
+          <p>Passionate advocate with over a decade of experience empowering underserved youth through education and community development.</p>
+          <!-- <p style="font-size:.85rem;"><strong>Contact:</strong> margaret@liftandservefoundation.com</p> -->
+        </div>
+       </div>
+    </div>
+
+    <!-- Impact Numbers -->
+    <div class="content-section">
+      <h2>Our Impact in Numbers</h2>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-graduation-cap"></i></div><div class="stat-number" data-stat="children">500+</div><div class="stat-label">Students Supported</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-school"></i></div><div class="stat-number" data-stat="schools">15</div><div class="stat-label">Schools Partnered</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div><div class="stat-number" data-stat="communities">10+</div><div class="stat-label">Communities Reached</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-handshake"></i></div><div class="stat-number" data-stat="partners">50+</div><div class="stat-label">Global Partners</div></div>
+      </div>
+    </div>
+
+    <div class="content-section" style="text-align:center;">
+      <h2>Join Our Mission</h2>
+      <p>Together, we can ensure that every child has access to quality education.</p>
+      <div class="btn-group" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="openDonateModal()">Donate Now</button>
+        <button class="btn btn-secondary" onclick="showPage('involved')">Get Involved</button>
+        <button class="btn btn-outline" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div></div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-wrap">
+          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="LISAF Logo" class="site-logo-img" style="height:48px;width:48px;">
+          <span>Lift and Serve All Foundation</span>
+        </div>
+        <p>Transforming the lives of children in underserved communities through education.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/liftandserveallfoundation" class="social-link"><i class="fab fa-facebook"></i></a>
+          <a href="https://instagram.com/lift_and_serve_all_foundation" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="https://linkedin.com/company/lift-and-serve-all-foundation" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.youtube.com/@LiftandServeAllFoundation" class="social-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div>
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="programs.html">Programs</a></li>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="news.html">News &amp; Blog</a></li>
+          <li><a href="involved.html">Get Involved</a></li>
+          <li><a href="faqs.html">FAQs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact Info</h3>
+        <div class="contact-info-footer">
+          <p><i class="fas fa-phone"></i> +2348031114594</p>
+          <p><i class="fas fa-phone"></i> +1 (903) 689-3774</p>
+          <p><i class="fas fa-envelope"></i> info@liftandservefoundation.com</p>
+          </div>
+      </div>
+      <div>
+        <h3>Newsletter</h3>
+        <p>Stay updated with our latest projects and impact stories.</p>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+          <input type="email" id="newsletterEmail" placeholder="Enter your email" required>
+          <button type="submit" class="btn btn-primary" style="padding:9px 14px;">Subscribe</button>
+        </form>
+        <p class="newsletter-msg" id="newsletterMsg">âœ“ Subscribed! Thank you.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Lift and Serve All Foundation. All rights reserved.</p>
+      <p class="admin-link"><a href="admin.html">Admin</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="chatbot-container">
+  <div class="chatbot-toggle" id="chatbotToggle"><i class="fas fa-comments"></i></div>
+  <div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header"><h3>Live Support</h3><button class="chatbot-close" id="chatbotClose"><i class="fas fa-times"></i></button></div>
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="chatbot-message bot-message"><p>Hello! How can I help you today?</p></div>
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" id="chatbotInput" placeholder="Type your message…">
+      <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     DONATE MODAL (quick donate from anywhere)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<div class="modal-overlay" id="donateModalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeDonateModal()">×</button>
+    <h3><i class="fas fa-heart" style="color:var(--gold);margin-right:.4rem;"></i> Make a Donation</h3>
+    <div class="amount-buttons" style="grid-template-columns:repeat(3,1fr);margin-bottom:.8rem;">
+      <button class="amount-btn" onclick="setModalAmount(25,this)">$25</button>
+      <button class="amount-btn" onclick="setModalAmount(50,this)">$50</button>
+      <button class="amount-btn" onclick="setModalAmount(100,this)">$100</button>
+      <button class="amount-btn" onclick="setModalAmount(250,this)">$250</button>
+      <button class="amount-btn" onclick="setModalAmount(500,this)">$500</button>
+      <button class="amount-btn" onclick="setModalAmount(1000,this)">$1000</button>
+    </div>
+    <input class="modal-input" type="number" id="modalCustomAmt" min="1" placeholder="Or enter custom amount ($)" oninput="modalDonateAmt=parseFloat(this.value)||0;document.querySelectorAll('#donateModalOverlay .amount-btn').forEach(b=>b.classList.remove('selected'));updateModalDisplay();">
+    <div class="modal-amount-display" id="modalAmtDisplay">$0</div>
+    <input class="modal-input" type="text"  id="modalName"  placeholder="Full name *">
+    <input class="modal-input" type="email" id="modalEmail" placeholder="Email address *">
+    <input class="modal-input" type="tel"   id="modalPhone" placeholder="Phone (for mobile money)">
+    <div class="pay-btns">
+      <button class="pay-btn" onclick="modalPayFlutterwave()"><i class="fas fa-mobile-alt"></i> Flutterwave</button>
+      <button class="pay-btn" onclick="modalPayPaystack()"><i class="fas fa-credit-card"></i> Paystack</button>
+    </div>
+    <p class="pay-note"><i class="fas fa-lock"></i> Payments are secured and encrypted.</p>
+  </div>
+</div>
+
+<script src="js/site.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js?v=2').catch(err => console.log('SW registration failed:', err));
+  });
+}
+</script>
+</body>
+</html>

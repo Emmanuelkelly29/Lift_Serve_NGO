@@ -1,0 +1,67 @@
+﻿<div id="page-involved" class="page-section">
+  <div class="page-header"><div class="container"><h1>Get Involved</h1><p>Education is a journey, and we cannot do it alone. Your involvement can change a life forever.</p></div></div>
+  <div class="page-content"><div class="container">
+
+    <div class="content-section" style="text-align:center;">
+      <h2>Join Our Mission</h2>
+      <p>There are many ways to support our mission. Whether you have time, resources, or expertise to share, your contribution makes a real difference.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Ways to Get Involved</h2>
+      <div class="involved-grid">
+        <div class="involved-card"><div class="involved-icon"><i class="fas fa-hands-helping"></i></div><h3>Volunteer</h3><p>Join our team on projects and outreach programs.</p><ul><li>Teaching &amp; Tutoring</li><li>Community Outreach</li><li>Event Organization</li><li>Administrative Support</li><li>Digital Support</li><li>Translation Services</li></ul><a href="#volunteer-form" class="btn btn-primary" onclick="document.getElementById('volunteer-form').scrollIntoView({behavior:'smooth'})">Apply to Volunteer</a></div>
+        <div class="involved-card"><div class="involved-icon"><i class="fas fa-handshake"></i></div><h3>Partner With Us</h3><p>Collaborate as a school, business, or organization.</p><ul><li>Corporate Partnerships (CSR)</li><li>Educational Institutions</li><li>NGO Collaborations</li><li>Government Agencies</li><li>Media Partners</li><li>Technology Partners</li></ul><button class="btn btn-primary" onclick="showPage('contact')">Become a Partner</button></div>
+        <div class="involved-card"><div class="involved-icon"><i class="fas fa-users"></i></div><h3>Membership</h3><p>Become part of our growing community.</p>
+          <div class="membership-tiers">
+            <div class="tier-card"><h4>Student</h4><div class="price">Free</div></div>
+            <div class="tier-card"><h4>Individual</h4><div class="price">$25/yr</div></div>
+            <div class="tier-card"><h4>Family</h4><div class="price">$50/yr</div></div>
+            <div class="tier-card"><h4>Professional</h4><div class="price">$100/yr</div></div>
+          </div>
+          <button class="btn btn-primary" style="margin-top:1rem;" onclick="openDonateModal()">Join Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Volunteer Application Form -->
+    <div class="content-section" id="volunteer-form">
+      <h2>Volunteer Application</h2>
+      <div class="form-card">
+        <div id="volunteerSuccess" class="success-msg"><i class="fas fa-check-circle"></i> Application submitted! We'll be in touch soon.</div>
+        <form onsubmit="submitVolunteerForm(event)">
+          <div class="form-row">
+            <div class="form-group"><label>Full Name *</label><input type="text" name="vName" required></div>
+            <div class="form-group"><label>Email Address *</label><input type="email" name="vEmail" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone Number</label><input type="tel" name="vPhone"></div>
+            <div class="form-group"><label>Availability</label>
+              <select name="vAvailability"><option value="">Select availability</option><option>Weekdays</option><option>Weekends</option><option>Evenings</option><option>Flexible</option></select>
+            </div>
+          </div>
+          <div class="form-group"><label>Skills &amp; Experience</label><textarea name="vSkills" placeholder="Tell us about your skills and what you'd like to help withâ€¦"></textarea></div>
+          <div class="form-group"><label>Areas of Interest</label>
+            <div class="checkbox-grid">
+              <label><input type="checkbox"> Teaching &amp; Tutoring</label>
+              <label><input type="checkbox"> Community Outreach</label>
+              <label><input type="checkbox"> Event Organization</label>
+              <label><input type="checkbox"> Administrative Support</label>
+              <label><input type="checkbox"> Digital Support</label>
+              <label><input type="checkbox"> Translation</label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit Application</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="content-section" style="text-align:center;">
+      <h2>Ready to Make a Difference?</h2>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="openDonateModal()">Donate Now</button>
+        <button class="btn btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+  </div></div>
+</div>

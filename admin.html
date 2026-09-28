@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LISAF Admin Panel</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#001F54">
+<link rel="shortcut icon" href="favicon.png" type="image/png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="css/admin.css">
+<script src="js/config.js"></script>
+<script src="js/images.js"></script>
+<script type="module" src="js/firebase-admin.js"></script>
+<script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+</head>
+<body>
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="LISAF" class="login-logo" onerror="this.style.display='none'">
+    <h2>Admin Panel</h2>
+    <p>Lift and Serve All Foundation</p>
+    <!-- Admin password is set in js/config.js -->
+    <input class="login-inp" type="password" id="pwInput" placeholder="Enter admin password"
+           onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()"><i class="fas fa-lock"></i> Login</button>
+    <p class="login-err" id="loginErr">Incorrect password. Try again.</p>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+
+  <header class="admin-header">
+    <div class="brand">
+      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Logo" onerror="this.style.display='none'">
+      <span>LISAF Admin</span>
+    </div>
+    <div class="header-right">
+      <!-- Prominent "View Public Website" button -->
+      <a href="index.html" class="view-site-btn" title="Click to view the public website">
+        <i class="fas fa-globe"></i> <span>View Public Site</span>
+      </a>
+      <button class="logout-btn" onclick="doLogout()"><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+  </header>
+
+  <div class="admin-body">
+
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+      <div class="sidebar-item active" onclick="showPanel('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+      <div class="sidebar-item" onclick="showPanel('homepage')"><i class="fas fa-home"></i> Homepage</div>
+      <div class="sidebar-item" onclick="showPanel('about')"><i class="fas fa-info-circle"></i> About Page</div>
+      <div class="sidebar-item" onclick="showPanel('gallery')"><i class="fas fa-images"></i> Gallery</div>
+      <div class="sidebar-item" onclick="showPanel('team')"><i class="fas fa-user-friends"></i> Team Photos</div>
+      <div class="sidebar-item" onclick="showPanel('media')"><i class="fas fa-photo-video"></i> Media Library</div>
+      <div class="sidebar-item" onclick="showPanel('news')"><i class="fas fa-newspaper"></i> News &amp; Blog</div>
+      <div class="sidebar-item" onclick="showPanel('communications')"><i class="fas fa-envelope"></i> Messages</div>
+      <div class="sidebar-item" onclick="showPanel('partners')"><i class="fas fa-handshake"></i> Partners</div>
+      <div class="sidebar-item" onclick="showPanel('donations')"><i class="fas fa-heart"></i> Donations</div>
+      <div class="sidebar-item" onclick="showPanel('stats')"><i class="fas fa-chart-bar"></i> Stats</div>
+      <div class="sidebar-item" onclick="showPanel('settings')"><i class="fas fa-cog"></i> Settings</div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="admin-main">
+
+      <!-- â”€â”€ DASHBOARD â”€â”€ -->
+      <div class="panel active" id="panel-dashboard">
+        <h2 class="panel-title"><i class="fas fa-tachometer-alt"></i> Dashboard</h2>
+        <div class="dash-stats">
+          <div class="dash-stat"><div class="num" id="db-news">â€”</div><div class="lbl">News Articles</div></div>
+          <div class="dash-stat"><div class="num" id="db-partners">â€”</div><div class="lbl">Partners</div></div>
+          <div class="dash-stat"><div class="num" id="db-subs">â€”</div><div class="lbl">Subscribers</div></div>
+          <div class="dash-stat"><div class="num" id="db-contacts">—</div><div class="lbl">Messages</div></div>
+          <div class="dash-stat"><div class="num" id="db-donations">—</div><div class="lbl">Donations</div></div>
+        </div>
+        <div class="card">
+          <h3>Quick Actions</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:.7rem;">
+            <button class="btn btn-primary" onclick="showPanel('news')"><i class="fas fa-plus"></i> Add News</button>
+            <button class="btn btn-outline" onclick="showPanel('homepage')"><i class="fas fa-image"></i> Update Images</button>
+            <button class="btn btn-outline" onclick="showPanel('gallery')"><i class="fas fa-images"></i> Update Gallery</button>
+            <button class="btn btn-outline" onclick="showPanel('partners')"><i class="fas fa-plus"></i> Add Partner</button>
+            <button class="btn btn-outline" onclick="showPanel('stats')"><i class="fas fa-edit"></i> Edit Stats</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3><i class="fas fa-tools" style="color:var(--navy)"></i> Setup Checklist</h3>
+          <ul class="checklist">
+            <li>- Confirm values in <code>js/config.js</code> (see <code>js/config.example.js</code>)</li>
+            <li>- Set Cloudinary credentials in <strong>Settings</strong> tab below</li>
+            <li>- Set <code>flutterwavePublicKey</code> in <code>js/config.js</code></li>
+            <li>- Set <code>paystackPublicKey</code> in <code>js/config.js</code></li>
+            <li>- The admin password is <code>adminPassword</code> in <code>js/config.js</code></li>
+            <li>- Successful donations are saved in Firestore under <code>donations</code></li>
+            <li>- Create an <em>unsigned upload preset</em> in Cloudinary → Settings → Upload</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- â”€â”€ HOMEPAGE IMAGES & TEXT â”€â”€ -->
+      <div class="panel" id="panel-homepage">
+        <h2 class="panel-title"><i class="fas fa-home"></i> Homepage Content</h2>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;">
+          Upload images here. After upload, the <strong>Cloudinary URL</strong> appears under each preview.
+          Click <strong>Save All Homepage Content</strong> so the public website uses them.
+        </p>
+
+        <div class="card">
+          <h3>Logo (shown across entire website)</h3>
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="uploadImg(this,'logo','hp_logoUrl')">
+            <div class="upload-icon"><i class="fas fa-image"></i></div>
+            <p>Tap to upload logo from gallery</p>
+            <div class="prog-bar-wrap" id="prog-logo"><div class="prog-bar" id="pb-logo"></div></div>
+            <img class="preview-img" id="prev-logo" alt="">
+            <p class="img-url-txt" id="urltxt-logo"></p>
+            <p class="upload-status" id="status-logo"></p>
+          </div>
+          <input type="hidden" id="hp_logoUrl">
+        </div>
+
+        <div class="card">
+          <h3>Hero Section</h3>
+          <label>Hero Title</label>
+          <input type="text" id="hp_heroTitle" placeholder="Transforming Lives Through Education">
+          <label>Hero Subtitle / Tagline</label>
+          <textarea id="hp_heroSubtitle" rows="3" placeholder="Describe the foundation's mission…"></textarea>
+          <label>Hero Image (right side of hero)</label>
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="uploadImg(this,'heroImg','hp_heroImgUrl')">
+            <div class="upload-icon"><i class="fas fa-child"></i></div>
+            <p>Tap to upload hero image from gallery</p>
+            <div class="prog-bar-wrap" id="prog-heroImg"><div class="prog-bar" id="pb-heroImg"></div></div>
+            <img class="preview-img" id="prev-heroImg" alt="">
+            <p class="img-url-txt" id="urltxt-heroImg"></p>
+            <p class="upload-status" id="status-heroImg"></p>
+          </div>
+          <input type="hidden" id="hp_heroImgUrl">
+        </div>
+
+        <div class="card">
+          <h3>About Preview Text (Home page)</h3>
+          <label>About Paragraph 1</label>
+          <textarea id="hp_aboutText1" rows="3"></textarea>
+          <label>About Paragraph 2</label>
+          <textarea id="hp_aboutText2" rows="3"></textarea>
+          <p style="font-size:.82rem;color:var(--muted);margin-top:.5rem;">
+            Team photo &amp; Our Story image are under the <strong>About Page</strong> tab.
+          </p>
+        </div>
+
+        <button class="btn btn-success" onclick="saveHomepage()"><i class="fas fa-save"></i> Save All Homepage Content</button>
+      </div>
+
+      <!-- ABOUT PAGE IMAGES -->
+      <div class="panel" id="panel-about">
+        <h2 class="panel-title"><i class="fas fa-info-circle"></i> About Page Images</h2>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;">
+          Update the images shown on <code>about.html</code>. Upload a file, wait for the URL to appear, then click Save.
+        </p>
+
+        <div class="card">
+          <h3>1. Who We Are photo</h3>
+          <p style="font-size:.82rem;color:var(--muted);margin-bottom:.8rem;">Large team/group photo next to “Who We Are” (also used on the Home about preview).</p>
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="uploadImg(this,'teamImg','hp_teamImgUrl')">
+            <div class="upload-icon"><i class="fas fa-users"></i></div>
+            <p>Tap to upload Who We Are photo</p>
+            <div class="prog-bar-wrap" id="prog-teamImg"><div class="prog-bar" id="pb-teamImg"></div></div>
+            <img class="preview-img" id="prev-teamImg" alt="">
+            <p class="img-url-txt" id="urltxt-teamImg"></p>
+            <p class="upload-status" id="status-teamImg"></p>
+          </div>
+          <input type="hidden" id="hp_teamImgUrl">
+        </div>
+
+        <div class="card">
+          <h3>2. Our Story image</h3>
+          <p style="font-size:.82rem;color:var(--muted);margin-bottom:.8rem;">Image in the “Our Story / Our Journey” section.</p>
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="uploadImg(this,'storyImg','hp_storyImgUrl')">
+            <div class="upload-icon"><i class="fas fa-heart"></i></div>
+            <p>Tap to upload Our Story image</p>
+            <div class="prog-bar-wrap" id="prog-storyImg"><div class="prog-bar" id="pb-storyImg"></div></div>
+            <img class="preview-img" id="prev-storyImg" alt="">
+            <p class="img-url-txt" id="urltxt-storyImg"></p>
+            <p class="upload-status" id="status-storyImg"></p>
+          </div>
+          <input type="hidden" id="hp_storyImgUrl">
+        </div>
+
+        <div class="card">
+          <h3>3. Team member photos</h3>
+          <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">Circular photos under “Meet Our Team”.</p>
+          <button type="button" class="btn btn-outline" onclick="showPanel('team')"><i class="fas fa-user-friends"></i> Open Team Photos to update</button>
+        </div>
+
+        <button class="btn btn-success" onclick="saveAboutPage()"><i class="fas fa-save"></i> Save About Page Images</button>
+      </div>
+
+      <!-- GALLERY -->
+      <div class="panel" id="panel-gallery">
+        <h2 class="panel-title"><i class="fas fa-images"></i> Programs Gallery</h2>
+        <div class="card" style="margin-bottom:1.5rem;">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+            <div>
+              <h3 style="margin:0 0 .4rem;">Unlimited Gallery Items</h3>
+              <p style="font-size:.87rem;color:var(--muted);margin:0;">Add unlimited images or videos to your gallery. Each item can include a caption and preview.</p>
+            </div>
+            <button class="btn btn-outline" onclick="addGalleryItem()"><i class="fas fa-plus"></i> Add Gallery Item</button>
+          </div>
+        </div>
+        <div id="galleryCards"></div>
+        <button class="btn btn-success" style="margin-top:1rem;" onclick="saveGallery()"><i class="fas fa-save"></i> Save Gallery</button>
+      </div>
+
+      <!-- â”€â”€ TEAM PHOTOS â”€â”€ -->
+      <div class="panel" id="panel-team">
+        <h2 class="panel-title"><i class="fas fa-user-friends"></i> Team Member Photos</h2>
+        <p style="font-size:.87rem;color:var(--muted);margin-bottom:1.5rem;">Upload photos for each team member shown on the About page.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem;" id="teamPhotoCards">
+          <!-- Generated by JS -->
+        </div>
+        <button class="btn btn-success" style="margin-top:1rem;" onclick="saveTeamPhotos()"><i class="fas fa-save"></i> Save Team Photos</button>
+      </div>
+
+      <!-- MEDIA LIBRARY -->
+      <div class="panel" id="panel-media">
+        <h2 class="panel-title"><i class="fas fa-photo-video"></i> Media Library</h2>
+        <p style="font-size:.87rem;color:var(--muted);margin-bottom:1rem;">
+          All website images are stored on <strong>Cloudinary</strong>. Their URLs are saved in <strong>Firestore</strong>
+          (not as files in this project folder). Use this panel to view and copy each image URL.
+        </p>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;">
+          To change an image: go to <strong>Homepage</strong>, <strong>Gallery</strong>, or <strong>Team Photos</strong>,
+          upload a new file, then click Save.
+        </p>
+        <div id="mediaLibraryGrid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;">
+          <!-- Images loaded here -->
+        </div>
+      </div>
+
+      <!-- â”€â”€ NEWS & BLOG â”€â”€ -->
+      <div class="panel" id="panel-news">
+        <h2 class="panel-title"><i class="fas fa-newspaper"></i> News &amp; Blog</h2>
+
+        <div class="card">
+          <h3 id="newsFormTitle">Add New Article</h3>
+          <input type="hidden" id="editNewsId">
+          <div class="form-row">
+            <div><label>Title *</label><input type="text" id="n_title" placeholder="Article title"></div>
+            <div><label>Category</label>
+              <select id="n_category">
+                <option>News</option><option>Success Story</option><option>Volunteer Story</option>
+                <option>Impact Report</option><option>Community Story</option>
+                <option>Donor Spotlight</option><option>Technology</option><option>Global News</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div><label>Date</label><input type="date" id="n_date"></div>
+            <div></div>
+          </div>
+          <label>Excerpt (short summary shown in listing)</label>
+          <textarea id="n_excerpt" rows="2" placeholder="Brief summary…"></textarea>
+          <label>Full Article Body</label>
+          <textarea id="n_body" rows="5" placeholder="Full article content…"></textarea>
+          <label>Article Image</label>
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="uploadImg(this,'newsImg','n_imgUrl')">
+            <div class="upload-icon"><i class="fas fa-image"></i></div>
+            <p>Tap to upload article image from gallery</p>
+            <div class="prog-bar-wrap" id="prog-newsImg"><div class="prog-bar" id="pb-newsImg"></div></div>
+            <img class="preview-img" id="prev-newsImg" alt="">
+            <p class="img-url-txt" id="urltxt-newsImg"></p>
+            <p class="upload-status" id="status-newsImg"></p>
+          </div>
+          <input type="hidden" id="n_imgUrl">
+<label class="checkbox" style="display:flex;align-items:center;gap:.55rem;margin-top:.5rem;font-size:.88rem;color:var(--muted);">
+              <input type="checkbox" id="notifySubscribers" style="width:auto;" checked> Send email update to subscribers when this article is saved
+            </label>
+            <div style="display:flex;gap:.7rem;margin-top:.5rem;flex-wrap:wrap;">
+              <button class="btn btn-success" onclick="saveArticle()"><i class="fas fa-save"></i> Save Article</button>
+              <button class="btn btn-outline" onclick="clearNewsForm()"><i class="fas fa-times"></i> Clear</button>
+            </div>
+          </div>
+
+        <div class="card">
+          <h3>Published Articles</h3>
+          <div id="newsList"><p style="color:var(--muted);font-size:.85rem;">Loading…</p></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-communications">
+        <h2 class="panel-title"><i class="fas fa-envelope"></i> Messages &amp; Subscribers</h2>
+        <div class="card">
+          <h3>Subscriber Emails</h3>
+          <p style="font-size:.88rem;color:var(--muted);margin-bottom:1rem;">
+            View the full list of newsletter subscribers. Copy or download email contacts for follow-up or alerts.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem;">
+            <button class="btn btn-outline" onclick="copySubscribers()"><i class="fas fa-copy"></i> Copy Emails</button>
+            <button class="btn btn-outline" onclick="downloadSubscribers()"><i class="fas fa-download"></i> Download CSV</button>
+            <button class="btn btn-primary" onclick="loadCommunications()"><i class="fas fa-sync-alt"></i> Refresh</button>
+          </div>
+          <div id="subscriberList" class="list-panel"><p style="color:var(--muted);font-size:.85rem;">Loading…</p></div>
+        </div>
+        <div class="card">
+          <h3>Contact Messages</h3>
+          <p style="font-size:.88rem;color:var(--muted);margin-bottom:1rem;">
+            Read the original message text, sender details, and contact information here.
+          </p>
+          <div id="contactList" class="list-panel"><p style="color:var(--muted);font-size:.85rem;">Loading…</p></div>
+        </div>
+      </div>
+
+      <!-- â”€â”€ PARTNERS â”€â”€ -->
+      <div class="panel" id="panel-partners">
+        <h2 class="panel-title"><i class="fas fa-handshake"></i> Partners</h2>
+
+        <div class="card">
+          <h3 id="partnerFormTitle">Add Partner</h3>
+          <input type="hidden" id="editPartnerId">
+          <div class="form-row">
+            <div><label>Organisation Name *</label><input type="text" id="p_name" placeholder="Partner name"></div>
+            <div><label>Website URL</label><input type="url" id="p_website" placeholder="https://…"></div>
+          </div>
+          <label>Partner Logo</label>
+          <div class="upload-zone">
+            <input type="file" accept="image/*" onchange="uploadImg(this,'partnerLogo','p_logoUrl')">
+            <div class="upload-icon"><i class="fas fa-building"></i></div>
+            <p>Tap to upload partner logo from gallery</p>
+            <div class="prog-bar-wrap" id="prog-partnerLogo"><div class="prog-bar" id="pb-partnerLogo"></div></div>
+            <img class="preview-img" id="prev-partnerLogo" alt="">
+            <p class="img-url-txt" id="urltxt-partnerLogo"></p>
+            <p class="upload-status" id="status-partnerLogo"></p>
+          </div>
+          <input type="hidden" id="p_logoUrl">
+          <div style="display:flex;gap:.7rem;margin-top:.5rem;">
+            <button class="btn btn-success" onclick="savePartner()"><i class="fas fa-save"></i> Save Partner</button>
+            <button class="btn btn-outline" onclick="clearPartnerForm()"><i class="fas fa-times"></i> Clear</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Current Partners</h3>
+          <div id="partnersList"><p style="color:var(--muted);font-size:.85rem;">Loading…</p></div>
+        </div>
+      </div>
+
+      <div class="panel" id="panel-donations">
+        <h2 class="panel-title"><i class="fas fa-heart"></i> Donations</h2>
+        <div class="card">
+          <h3>Successful checkout records</h3>
+          <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;">These are saved in Firestore when Flutterwave or Paystack reports a successful payment. No paid Firebase plan is required.</p>
+          <button class="btn btn-primary" onclick="loadDonations()"><i class="fas fa-sync-alt"></i> Refresh</button>
+          <div id="donationsList" style="margin-top:1rem;"><p style="color:var(--muted);font-size:.85rem;">Loading…</p></div>
+        </div>
+      </div>
+
+      <!-- â”€â”€ STATS â”€â”€ -->
+      <div class="panel" id="panel-stats">
+        <h2 class="panel-title"><i class="fas fa-chart-bar"></i> Impact Statistics</h2>
+        <div class="card">
+          <h3>Numbers shown on homepage and about page</h3>
+          <div class="form-row">
+            <div><label>Children Supported</label><input type="text" id="s_children" placeholder="e.g. 1000+"></div>
+            <div><label>Communities Reached</label><input type="text" id="s_communities" placeholder="e.g. 25+"></div>
+          </div>
+          <div class="form-row">
+            <div><label>Global Partners</label><input type="text" id="s_partners" placeholder="e.g. 100+"></div>
+            <div><label>Schools Partnered</label><input type="text" id="s_schools" placeholder="e.g. 15"></div>
+          </div>
+          <div class="form-row">
+            <div><label>Books Distributed</label><input type="text" id="s_books" placeholder="e.g. 1,000+"></div>
+            <div><label>Youth Mentored</label><input type="text" id="s_mentored" placeholder="e.g. 150+"></div>
+          </div>
+          <button class="btn btn-success" onclick="saveStats()"><i class="fas fa-save"></i> Save Stats</button>
+        </div>
+      </div>
+
+      <!-- â”€â”€ SETTINGS â”€â”€ -->
+      <div class="panel" id="panel-settings">
+        <h2 class="panel-title"><i class="fas fa-cog"></i> Settings</h2>
+
+        <div class="card">
+          <h3>Email Notifications</h3>
+          <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">
+            Configure EmailJS so you can send newsletter alerts to subscribers when you publish news.
+          </p>
+          <label>EmailJS Service ID</label>
+          <input type="text" id="cfg_email_service" placeholder="service_xxx">
+          <label>EmailJS Template ID</label>
+          <input type="text" id="cfg_email_template" placeholder="template_xxx">
+          <label>EmailJS Public Key</label>
+          <input type="text" id="cfg_email_user" placeholder="your public key">
+          <label>From Name</label>
+          <input type="text" id="cfg_email_from" placeholder="Lift and Serve All Foundation">
+          <label>From Email</label>
+          <input type="email" id="cfg_email_from_address" placeholder="info@liftandservefoundation.com">
+          <p style="font-size:.79rem;color:var(--muted);margin-bottom:1rem;">
+            Create an EmailJS account at <a href="https://www.emailjs.com/" target="_blank">emailjs.com</a> and build a template using the fields below.
+          </p>
+          <button class="btn btn-success" onclick="saveEmailConfig()"><i class="fas fa-save"></i> Save Email Config</button>
+        </div>
+
+        <div class="card">
+          <h3>Cloudinary Configuration</h3>
+          <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">
+            Stored in your browser (localStorage). Get from
+            <strong>cloudinary.com/console</strong>.
+          </p>
+          <label>Cloud Name</label>
+          <input type="text" id="cfg_cloud" placeholder="e.g. my-cloud">
+          <label>Unsigned Upload Preset</label>
+          <input type="text" id="cfg_preset" placeholder="e.g. lisaf_uploads">
+          <p style="font-size:.79rem;color:var(--muted);margin-bottom:1rem;">
+            Create an <em>unsigned upload preset</em> in Cloudinary â†’ Settings â†’ Upload â†’ Add preset â†’ set Signing Mode to <strong>Unsigned</strong>.
+          </p>
+          <button class="btn btn-success" onclick="saveCloudinary()"><i class="fas fa-save"></i> Save Cloudinary Config</button>
+        </div>
+
+        <div class="card">
+          <h3>Admin Password</h3>
+          <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem;">
+            To change the password, open <code>js/config.js</code>, update
+            <code>adminPassword</code>, save, and deploy Hosting again.
+          </p>
+          <label>New Password</label><input type="password" id="newPw1" placeholder="New password">
+          <label>Confirm</label><input type="password" id="newPw2" placeholder="Confirm password">
+          <button class="btn btn-primary" onclick="showPwHint()"><i class="fas fa-key"></i> Show Change Instructions</button>
+          <div id="pwHint" style="display:none;background:#fffbe6;padding:1rem;border-radius:8px;margin-top:1rem;font-size:.83rem;">
+            <strong>Steps:</strong><br>
+            1. Open <code>js/config.js</code> in a text editor<br>
+            2. Find: <code>adminPassword: "..."</code><br>
+            3. Replace with: <strong id="pwHintVal" style="color:var(--navy)"></strong><br>
+            4. Save and run <code>firebase deploy --only hosting</code>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+<script src="js/admin.js"></script>
+</body>
+</html>

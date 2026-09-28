@@ -1,0 +1,101 @@
+﻿<div id="page-home" class="page-section active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <h1 id="heroTitle">Transforming Lives Through Education</h1>
+          <p class="hero-tagline" id="heroSubtitle">Lift and Serve All Foundation is dedicated to transforming the lives of children in underserved communities through education, breaking barriers and creating brighter futures.</p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="openDonateModal()"><i class="fas fa-heart"></i> Donate Now</button>
+            <button class="btn btn-white" onclick="showPage('programs')">Our Programs</button>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <img id="heroImg" src="children.jpg" alt="Children learning">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <h2>Our Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-child"></i></div><div class="stat-number" data-stat="children">1000+</div><div class="stat-label">Children Supported</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div><div class="stat-number" data-stat="communities">25+</div><div class="stat-label">Communities Reached</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-handshake"></i></div><div class="stat-number" data-stat="partners">100+</div><div class="stat-label">Global Partners</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-school"></i></div><div class="stat-number" data-stat="schools">15</div><div class="stat-label">Schools Partnered</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA strip -->
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Join us in transforming lives through education</h2>
+      <p>Donate, Volunteer, or Partner today!</p>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="openDonateModal()">Donate</button>
+        <button class="btn btn-white" onclick="showPage('involved')">Volunteer</button>
+        <button class="btn btn-outline" style="border-color:#fff;color:#fff;" onclick="showPage('contact')">Partner</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About preview -->
+  <section class="about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>About Lift and Serve All Foundation</h2>
+          <p id="aboutText1">Lift and Serve All Foundation is a non-profit organization dedicated to transforming the lives of children in underserved communities through education. We believe that every child deserves the opportunity to learn, grow, and achieve their dreams, regardless of their background or circumstances.</p>
+          <p id="aboutText2">By lifting young minds with access to quality education and serving communities with care and support, we aim to break barriers, reduce inequality, and create brighter futures.</p>
+          <button class="btn btn-primary" onclick="showPage('about')">Learn More</button>
+        </div>
+        <div class="team-photo-wrap">
+          <img id="teamImg" src="LASA Team.jpg" alt="Our Team">
+          <p class="caption">Our Team</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs preview -->
+  <section class="programs-section alt-bg">
+    <div class="container">
+      <h2 style="text-align:center;">Our Programs</h2>
+      <div class="programs-grid">
+        <div class="program-card"><div class="program-icon"><i class="fas fa-school"></i></div><h3>School Access Support</h3><p>Helping children in rural communities enroll and stay in school.</p></div>
+        <div class="program-card"><div class="program-icon"><i class="fas fa-book"></i></div><h3>Learning Materials Drive</h3><p>Supplying books, uniforms, and educational resources.</p></div>
+        <div class="program-card"><div class="program-icon"><i class="fas fa-user-graduate"></i></div><h3>Mentorship &amp; Tutoring</h3><p>Guiding children to develop confidence and skills.</p></div>
+        <div class="program-card"><div class="program-icon"><i class="fas fa-users"></i></div><h3>Community Engagement</h3><p>Working with parents and local leaders to sustain progress.</p></div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <button class="btn btn-primary" onclick="showPage('programs')">View All Programs</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- News preview -->
+  <section class="programs-section">
+    <div class="container">
+      <h2 style="text-align:center;margin-bottom:1rem;">Latest News</h2>
+      <div id="featuredArticle"></div>
+      <div id="newsGrid" class="blog-grid" style="margin-top:2rem;"></div>
+      <div style="text-align:center;margin-top:2rem;">
+        <button class="btn btn-primary" onclick="showPage('news')">View All News</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partners logos -->
+  <section class="stats-section">
+    <div class="container" style="text-align:center;">
+      <h2>Our Partners</h2>
+      <div id="partnersLogoGrid" style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;align-items:center;margin-top:2rem;"></div>
+    </div>
+  </section>
+</div>

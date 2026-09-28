@@ -1,0 +1,5 @@
+{
+  "name": "lisaf",
+  "private": true,
+  "description": "Static site. Deploy with Firebase Hosting: firebase deploy --only hosting"
+}

@@ -1,0 +1,51 @@
+﻿<div id="page-faqs" class="page-section">
+  <div class="page-header"><div class="container"><h1>Frequently Asked Questions</h1><p>Find answers to common questions about our programs, donations, volunteering, and more.</p></div></div>
+  <div class="page-content"><div class="container">
+
+    <div class="faq-search-bar">
+      <input type="text" id="faqSearchInput" placeholder="Search FAQsâ€¦" oninput="filterFaqs(this.value)">
+    </div>
+
+    <div id="faqContainer">
+      <!-- DONATIONS -->
+      <div class="faq-category">
+        <h3><i class="fas fa-heart"></i> Donations</h3>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>How can I donate from abroad?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>We accept global donations securely via Flutterwave and Paystack. You can also make bank transfers to our foundation account. All donations are tax-deductible and we provide receipts.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>How do I know my donation is being used properly?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>We provide regular transparency reports showing how donations are allocated. You can view our annual financial reports, impact updates, and program evaluations on our website.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>Can I make a recurring donation?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes! We offer monthly recurring donations that provide consistent support. You can set up recurring donations through our online donation form or contact us directly.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>What is the minimum donation amount?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>There is no minimum donation amount. Every contribution, no matter how small, makes a difference. Even $25 can provide school supplies for one child for a month.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>Are donations tax-deductible?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes, all donations to Lift and Serve All Foundation are tax-deductible. We provide official receipts for all donations that you can use for tax purposes.</p></div></div>
+      </div>
+      <!-- VOLUNTEERING -->
+      <div class="faq-category">
+        <h3><i class="fas fa-hands-helping"></i> Volunteering</h3>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>Can I volunteer if I'm outside the country?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes! You can volunteer virtually through online tutoring, content creation, translation services, and technical support opportunities from anywhere in the world.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>What skills do I need to volunteer?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>We welcome volunteers with various skills and backgrounds. Whether you have teaching experience, technical skills, or simply a passion for education, there's a volunteer opportunity for you.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>How much time do I need to commit?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Time commitments vary depending on the volunteer role. Some opportunities require just a few hours per week, while others are project-based. We're flexible and can work with your schedule.</p></div></div>
+      </div>
+      <!-- PROGRAMS -->
+      <div class="faq-category">
+        <h3><i class="fas fa-graduation-cap"></i> Programs</h3>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>How do you select students for scholarships?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>We select students based on financial need, academic potential, and community recommendations, including family interviews and school assessments.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>Can I sponsor a specific student?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes! We offer individual student sponsorship programs where you can support a specific child's education and receive regular updates about their progress.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>What communities do you serve?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>We primarily serve rural and underserved communities, focusing on areas where educational infrastructure is lacking. We've reached over 25 communities and continue to expand.</p></div></div>
+      </div>
+      <!-- GENERAL -->
+      <div class="faq-category">
+        <h3><i class="fas fa-info-circle"></i> General</h3>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>Is Lift and Serve All Foundation a registered organization?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes, Lift and Serve All Foundation is a registered non-profit organization. We operate with full legal compliance and maintain all necessary registrations and certifications.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>Do you accept in-kind donations?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Yes! We accept books, school supplies, computers, tablets, and other learning materials. Contact us to discuss what items we currently need.</p></div></div>
+        <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)"><span>How can I stay updated on your work?</span><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Subscribe to our newsletter, follow us on social media (Facebook, Instagram, LinkedIn, YouTube), or visit our News &amp; Blog section regularly.</p></div></div>
+      </div>
+    </div>
+
+    <div class="content-section" style="text-align:center;">
+      <h2>Still Have Questions?</h2>
+      <p>If you couldn't find the answer you're looking for, we're here to help!</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="showPage('contact')">Contact Us</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('chatbotToggle').click()">Live Chat</button>
+      </div>
+    </div>
+  </div></div>
+</div>
