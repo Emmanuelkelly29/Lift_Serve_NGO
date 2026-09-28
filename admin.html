@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -96,7 +96,6 @@
             <li>- Confirm values in <code>js/config.js</code> (see <code>js/config.example.js</code>)</li>
             <li>- Set Cloudinary credentials in <strong>Settings</strong> tab below</li>
             <li>- Set <code>flutterwavePublicKey</code> in <code>js/config.js</code></li>
-            <li>- Set <code>paystackPublicKey</code> in <code>js/config.js</code></li>
             <li>- The admin password is <code>adminPassword</code> in <code>js/config.js</code></li>
             <li>- Successful donations are saved in Firestore under <code>donations</code></li>
             <li>- Create an <em>unsigned upload preset</em> in Cloudinary → Settings → Upload</li>
@@ -359,7 +358,7 @@
         <h2 class="panel-title"><i class="fas fa-heart"></i> Donations</h2>
         <div class="card">
           <h3>Successful checkout records</h3>
-          <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;">These are saved in Firestore when Flutterwave or Paystack reports a successful payment. No paid Firebase plan is required.</p>
+          <p style="font-size:.85rem;color:var(--muted);margin-bottom:1rem;">These are saved in Firestore when Flutterwave reports a successful payment. No paid Firebase plan is required.</p>
           <button class="btn btn-primary" onclick="loadDonations()"><i class="fas fa-sync-alt"></i> Refresh</button>
           <div id="donationsList" style="margin-top:1rem;"><p style="color:var(--muted);font-size:.85rem;">Loading…</p></div>
         </div>
