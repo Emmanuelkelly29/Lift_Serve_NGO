@@ -1,5 +1,5 @@
 /* Cache static assets + Cloudinary images for faster repeat visits */
-const CACHE = 'lisaf-v4';
+const CACHE = 'lisaf-v6';
 const PRECACHE = [
   './',
   './index.html',

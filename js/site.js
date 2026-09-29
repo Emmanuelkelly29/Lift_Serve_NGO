@@ -187,11 +187,17 @@ function modalPayFlutterwave() { const d=getModalData(); if(!d) return; closeDon
    ⚠  Replace the public key in config.js with your real key
    Flutterwave: https://dashboard.flutterwave.com â†’ Settings â†’ API Keys
 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-/* Payment SDKs — load only when a donor clicks pay (frees bandwidth for images) */
+/* Payment SDKs */
 function loadScript(src) {
   return new Promise((resolve, reject) => {
-    if (document.querySelector('script[src="' + src + '"]')) {
-      resolve();
+    const existing = document.querySelector('script[src="' + src + '"]');
+    if (existing) {
+      if (typeof FlutterwaveCheckout === 'function') {
+        resolve();
+        return;
+      }
+      existing.addEventListener('load', () => resolve(), { once: true });
+      existing.addEventListener('error', () => reject(new Error('Failed to load ' + src)), { once: true });
       return;
     }
     const s = document.createElement('script');
@@ -213,7 +219,7 @@ async function runFlutterwave(d) {
   try {
     await ensureFlutterwave();
   } catch (e) {
-    alert('Unable to load payment. Please try again.');
+    alert('Unable to load Flutterwave checkout. Please disable any ad blocker/privacy blocker for this site, refresh, and try again.');
     return;
   }
   FlutterwaveCheckout({

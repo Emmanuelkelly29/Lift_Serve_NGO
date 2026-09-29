@@ -15,7 +15,7 @@ window.LISAF_CONFIG = {
 
   adminPassword: "LISAFadmin2025",
 
-  flutterwavePublicKey: "FLWPUBK-e1866c61268deb6d7b5f9d7bda2c60ab-X",
+  flutterwavePublicKey: "FLWPUBK_TEST-c18981d0c452bafd4f1997e443e3cc7d-X",
 
   cloudinary: {
     cloudName: "dedskziix",
